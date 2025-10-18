@@ -26,7 +26,7 @@ public class UserModel {
     @JsonIgnore
     private Long id;
 
-    @Column(name = "phne", unique = true)
+    @Column(name = "phone", unique = true)
     @Schema(description = "Номер телефона пользователя. Должен начинаться на знак + и состоять только из цифр до 20 символов.")
     private String phone;
 

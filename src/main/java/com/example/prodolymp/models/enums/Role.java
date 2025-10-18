@@ -3,7 +3,7 @@ package com.example.prodolymp.models.enums;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    ROLE_USER, ROLE_ADMIN;
+    user, admin;
 
     @Override
     public String getAuthority() {
