@@ -1,22 +1,13 @@
-FROM openjdk:18-slim
-
-# Install Maven
-RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
-
+# Stage 1: Build
+FROM maven:3.9.4-eclipse-temurin-18 AS build
 WORKDIR /app
-
-# Copy pom.xml and download dependencies
-COPY pom.xml ./
+COPY pom.xml .
 RUN mvn dependency:go-offline
-
-# Copy the rest of the project files
 COPY . .
+RUN mvn package -DskipTests
 
-# Build the application
-RUN mvn package
-
-# Copy the jar file from target
-COPY target/ProdOlymp-0.0.1-SNAPSHOT.jar /app/ProdOlymp-0.0.1-SNAPSHOT.jar
-
-# Set the entry point
-ENTRYPOINT ["java","-jar","/app/ProdOlymp-0.0.1-SNAPSHOT.jar"]
+# Stage 2: Run
+FROM openjdk:18-slim
+WORKDIR /app
+COPY --from=build /app/target/ProdOlymp-0.0.1-SNAPSHOT.jar /app/app.jar
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
