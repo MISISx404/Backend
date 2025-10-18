@@ -49,9 +49,9 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
 
         if(admin){
-            user.setRole(Role.ROLE_ADMIN);
+            user.setRole(Role.admin);
         }else{
-            user.setRole(Role.ROLE_USER);
+            user.setRole(Role.user);
         }
         userRepositories.save(user);
 

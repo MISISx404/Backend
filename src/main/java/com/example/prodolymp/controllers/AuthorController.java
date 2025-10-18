@@ -40,7 +40,7 @@ public class AuthorController {
             if(tokenService.validateToken(jwtToken)){
                 Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                 if(user.isPresent()){
-                    if(user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)){
+                    if(user.get().getRole() != null && user.get().getRole().equals(Role.admin)){
                         Set<ThemesModel> themes = authorService.getAllAuthorTheme(user.get());
                         return ResponseEntity.status(HttpStatus.OK).body(themes);
                     }else{
@@ -109,7 +109,7 @@ public class AuthorController {
             if(tokenService.validateToken(jwtToken)){
                 Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                 if(user.isPresent()){
-                    if(user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)){
+                    if(user.get().getRole() != null && user.get().getRole().equals(Role.admin)){
                         AuthorModel author = authorService.getAuthorByUser(user.get());
                         return ResponseEntity.status(HttpStatus.OK).body(author);
                     }else{

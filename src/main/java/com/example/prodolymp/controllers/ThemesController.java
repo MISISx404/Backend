@@ -89,7 +89,7 @@ public class ThemesController {
                     Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                     if (user.isPresent()) {
                         System.out.println(user.get().getRole());
-                        if (user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)) {
+                        if (user.get().getRole() != null && user.get().getRole().equals(Role.admin)) {
                             String title = (String) request.get("title");
                             String category = (String) request.get("category");
                             String description = (String) request.get("description");
@@ -284,7 +284,7 @@ public class ThemesController {
                 if (request != null) {
                     Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                     if (user.isPresent()) {
-                        if (user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)) {
+                        if (user.get().getRole() != null && user.get().getRole().equals(Role.admin)) {
                             Long id = ((Integer) request.get("id")).longValue();
                             String title = (String) request.get("title");
                             String url = (String) request.get("video_url");
@@ -351,7 +351,7 @@ public class ThemesController {
                 if (request != null) {
                     Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                     if (user.isPresent()) {
-                        if (user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)) {
+                        if (user.get().getRole() != null && user.get().getRole().equals(Role.admin)) {
                             Long id = ((Integer) request.get("id")).longValue();
                             String response = (String) request.get("response");
                             String description = (String) request.get("description");
@@ -402,7 +402,7 @@ public class ThemesController {
             if (tokenService.validateToken(jwtToken)) {
                 Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                 if (user.isPresent()) {
-                    if (user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)) {
+                    if (user.get().getRole() != null && user.get().getRole().equals(Role.admin)) {
                         String image = imageService.saveImage(file);
                         UnderThemesModel under = themesService.addImageUnderTheme(image, underThemeId);
                         if (under != null) {
@@ -438,7 +438,7 @@ public class ThemesController {
             if (tokenService.validateToken(jwtToken)) {
                 Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                 if (user.isPresent()) {
-                    if (user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)) {
+                    if (user.get().getRole() != null && user.get().getRole().equals(Role.admin)) {
                         String image = imageService.saveImage(file);
                         TaskModel task = themesService.addImageTask(image, taskId);
                         if (task != null) {

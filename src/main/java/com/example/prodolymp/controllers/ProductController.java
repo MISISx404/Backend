@@ -126,7 +126,7 @@ public class ProductController {
                     Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                     if(user.isPresent()){
                         System.out.println(user.get().getRole());
-                        if(user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)){
+                        if(user.get().getRole() != null && user.get().getRole().equals(Role.admin)){
                             String title = (String) request.get("title");
                             String category = (String) request.get("category");
                             String description = (String) request.get("description");
@@ -198,7 +198,7 @@ public class ProductController {
             if(tokenService.validateToken(jwtToken)){
                 Optional<UserModel> user = tokenService.getUserByToken(jwtToken);
                 if(user.isPresent()){
-                    if(user.get().getRole() != null && user.get().getRole().equals(Role.ROLE_ADMIN)){
+                    if(user.get().getRole() != null && user.get().getRole().equals(Role.admin)){
                         String image = imageService.saveImage(file);
                         ProductModel product = productService.addImage(image, Id);
                         if(product != null){
